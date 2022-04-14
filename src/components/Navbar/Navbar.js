@@ -26,11 +26,11 @@ export function Navbar() {
 
         <li className={styles.link}>
           <NavLink
-            to="/restock"
+            to="/updatestock"
             activeClassName={styles.active}
             className={styles.navlink}
           >
-            RESTOCK
+            UPDATESTOCK
           </NavLink>
         </li>
 

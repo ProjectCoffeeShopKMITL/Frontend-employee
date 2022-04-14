@@ -10,6 +10,7 @@ import { AboutPage } from './pages/AboutPage/AboutPage'
 import { GalleryPage } from './pages/GalleryPage/GalleryPage'
 import { CartPage } from './pages/CartPage/CartPage'
 import { StockPage } from './pages/StockPage/StockPage'
+import { UpdateStockPage } from './pages/UpdateStockPage/UpdateStockPage'
 import { RestockPage } from './pages/RestockPage/RestockPage'
 import { EmployeePage } from './pages/EmployeePage/EmployeePage'
 import { MemberPage } from './pages/MemberPage/MemberPage'
@@ -22,6 +23,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={StockPage} />
+        <Route exact path="/updatestock" component={UpdateStockPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/employee" component={EmployeePage} />
         <Route exact path="/member" component={MemberPage} />
@@ -36,5 +38,21 @@ function App() {
     </BrowserRouter>
   )
 }
+
+function App2() {
+  return (
+    <BrowserRouter>
+      <StockPage />
+      <Switch>
+        <Route exact path="/" component={StockPage} />
+        <Route exact path="/updatestock" component={UpdateStockPage} />
+        <Route exact ="/dashboard" component={DashboardPage} />
+        <Route exact ="/restock" component={RestockPage} />
+      </Switch>
+      <Footer />
+    </BrowserRouter>
+  )
+}
+
 
 export default App
