@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Navbar } from './components/Navbar/Navbar'
 import { Footer } from './components/Footer/Footer'
 
-/*import { HomePage } from './pages/HomePage/HomePage'*/
 import { MenuPage } from './pages/MenuPage/MenuPage'
 import { MenuDetailPage } from './pages/MenuDetailPage/MenuDetailPage'
 import { AboutPage } from './pages/AboutPage/AboutPage'
@@ -16,6 +15,7 @@ import { EmployeePage } from './pages/EmployeePage/EmployeePage'
 import { MemberPage } from './pages/MemberPage/MemberPage'
 import { DashboardPage } from './pages/DashboardPage/DashboardPage'
 /*import { StockDetailPage } from './pages/StockDetailPage/StockDetailPage'*/
+/*import { HomePage } from './pages/HomePage/HomePage'*/
 
 function App() {
   return (
