@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom'
 
 import { Rate } from 'antd'
 import { IoCartOutline } from 'react-icons/io5'
-// import { GrCart } from 'react-icons/gr'
-// import { CgShoppingCart } from 'react-icons/cg'
 
 export function Restock({ data }) {
   // move to next page
