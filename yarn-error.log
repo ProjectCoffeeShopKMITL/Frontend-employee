@@ -1,21 +1,23 @@
 Arguments: 
-  /opt/homebrew/Cellar/node/16.6.1/bin/node /opt/homebrew/Cellar/yarn/1.22.10/libexec/bin/yarn.js
+  /opt/homebrew/Cellar/node/17.6.0_1/bin/node /opt/homebrew/Cellar/yarn/1.22.17_2/libexec/bin/yarn.js install
 
 PATH: 
   /opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin:/opt/homebrew/sbin
 
 Yarn version: 
-  1.22.10
+  1.22.17
 
 Node version: 
-  16.6.1
+  17.6.0
 
 Platform: 
   darwin arm64
 
 Trace: 
-  Error: connect ECONNREFUSED 104.16.22.35:443
-      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1142:16)
+  Error: https://registry.yarnpkg.com/react-native-table-component/-/react-native-table-component-1.2.2.tgz: ETIMEDOUT
+      at Timeout._onTimeout (/opt/homebrew/Cellar/yarn/1.22.17_2/libexec/lib/cli.js:141543:19)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
 
 npm manifest: 
   {
@@ -27,16 +29,19 @@ npm manifest:
       "@testing-library/react": "^11.1.0",
       "@testing-library/user-event": "^12.1.10",
       "antd": "^4.17.2",
+      "axios": "0.21.1",
       "classnames": "^2.3.1",
       "craco": "^0.0.3",
       "craco-less": "^1.20.0",
       "react": "^17.0.2",
       "react-dom": "^17.0.2",
       "react-icons": "^4.3.1",
+      "react-native-table-component": "^1.2.2",
       "react-router-dom": "^5.0.0",
       "react-scripts": "4.0.3",
-      "web-vitals": "^1.0.1",
-      "axios":"0.21.1"
+      "react-table": "^7.7.0",
+      "react-table-v6": "^6.8.6",
+      "web-vitals": "^1.0.1"
     },
     "scripts": {
       "start": "craco start",
@@ -2934,6 +2939,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.1.2.tgz#7cf783331320098bfbef620df3b3c770147bc224"
     integrity sha512-V+Nq70NxKhYt89ArVcaNL9FDryB3vQOd+BFXZIfO3RP6rwtj+2yqqqdHEkacutglPaZLkJeuXKCjCJDMGPtPqg==
   
+  axios@0.21.1:
+    version "0.21.1"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+    integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+    dependencies:
+      follow-redirects "^1.10.0"
+  
   axobject-query@^2.2.0:
     version "2.2.0"
     resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
@@ -5522,6 +5534,11 @@ Lockfile:
     version "1.13.2"
     resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.2.tgz#dd73c8effc12728ba5cf4259d760ea5fb83e3147"
     integrity sha512-6mPTgLxYm3r6Bkkg0vNM0HTjfGrOEtsfbhagQvbxDEsEkpNhw582upBaoRZylzen6krEmxXJgt9Ju6HiI4O7BA==
+  
+  follow-redirects@^1.10.0:
+    version "1.14.7"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.7.tgz#2004c02eb9436eee9a21446a6477debf17e81685"
+    integrity sha512-+hbxoLbFMbRKDwohX8GkTataGqO6Jb7jGwpAlwgy2bIz25XtRm7KEzJM76R1WiNT5SwZkX4Y75SwBolkpmE7iQ==
   
   for-in@^1.0.2:
     version "1.0.2"
@@ -9985,6 +10002,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
     integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
   
+  react-native-table-component@^1.2.2:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/react-native-table-component/-/react-native-table-component-1.2.2.tgz#1c9bdcd8f1fd7edf10d1e93ebc3b7877ecd74def"
+    integrity sha512-7bbsi5431iWcjj3toASh8lFHGi6AG/+MTd4M7GuksXKxx/CFs/Qwv1Ys7D2wgyuYKe3hxWNfSVrteFj0tOYXYw==
+  
   react-refresh@^0.8.3:
     version "0.8.3"
     resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
@@ -10084,6 +10106,18 @@ Lockfile:
       workbox-webpack-plugin "5.1.4"
     optionalDependencies:
       fsevents "^2.1.3"
+  
+  react-table-v6@^6.8.6:
+    version "6.8.6"
+    resolved "https://registry.yarnpkg.com/react-table-v6/-/react-table-v6-6.8.6.tgz#8362230caa16f8d6abefeedb2d95dd1adb2741e5"
+    integrity sha512-jxo20BTIU/tQxToOZFnfr0V123VSQ2kNdxR+JbA7V4Zfj1jNtBaiFW/lYgVwejnbnUOuj96pV8Dd+yXXMdAMDA==
+    dependencies:
+      classnames "^2.2.5"
+  
+  react-table@^7.7.0:
+    version "7.7.0"
+    resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.7.0.tgz#e2ce14d7fe3a559f7444e9ecfe8231ea8373f912"
+    integrity sha512-jBlj70iBwOTvvImsU9t01LjFjy4sXEtclBovl3mTiqjz23Reu0DKnRza4zlLtOPACx6j2/7MrQIthIK1Wi+LIA==
   
   react@^17.0.2:
     version "17.0.2"

@@ -1,156 +1,95 @@
-.carousel {
-    background: var(--brownlight);
-    height: 500px;
+.coverHeader {
+    background: #202020c7;
+    height: 300px;
+    width: 100%;
 }
-.coverTextIncarousel {
-    height: 100%;
+.imgHeader {
+    background-image: url(../../picture/img15.jpeg);
+    height: 300px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    z-index: -1;
+}
+.textHeader {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.textIncarousel {
-    color: var(--white);
-    width: 800px;
-    position: absolute;
-    z-index: 2;
-}
-.textIncarousel h3 {
-    color: var(--white);
     font-size: 40px;
     font-family: "Libre Baskerville";
-}
-
-.img1 {
-    position: absolute;
-    width: 100vw;
-    filter: brightness(50%);
-}
-.img2 {
-    position: absolute;
-    width: 100vw;
-    filter: brightness(50%);
-}
-.img3 {
-    position: absolute;
-    width: 100vw;
-    filter: brightness(50%);
-}
-.img4 {
-    position: absolute;
-    width: 100vw;
-    filter: brightness(50%);
-}
-
-.part2 {
-    background: var(--white);
+    height: 300px;
     width: 100%;
-    height: 400px;
-    /* color: var(--black); */
-    color: var(--black);
-    font-family: "Libre Baskerville";
-    font-size: 24px;
-    text-align: center;
-    padding: 2rem;
-}
-.coverBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.leftBox {
-    font-size: 20px;
-    width: 400px;
-    height: 300px;
-    padding: 1.5rem 1rem;
-    text-align: end;
-}
-.rightBox {
-    font-size: 20px;
-    width: 400px;
-    height: 300px;
-    padding: 1.5rem 1rem;
-    text-align: start;
-}
-h4 {
-    color: var(--black);
-}
-.textInBox {
-    font-size: 14px;
-}
-
-.part3 {
-    background: var(--white);
-    /* background: #ffffff; */
-    font-family: "Libre Baskerville";
-    font-size: 24px;
-    height: 400px;
-    padding: 2rem 0;
-}
-.headP3 {
-    text-align: center;
-    margin-bottom: 4rem;
-}
-
-.containerImg {
-    background: rgb(255, 114, 114);
-    height: 200px;
-    display: flex;
-    justify-content: center;
-}
-.coverImg:hover {
-    transform: scale(1.25);
+    color: var(--white);
+    position: absolute;
     z-index: 1;
 }
-.coverImg:hover img {
-    filter: brightness(60%);
+
+.container {
+    display: grid;
+    padding: 4rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
-.coverImg:hover .imgBox1::after {
-    opacity: 1;
-}
-.coverImg {
-    flex: 1;
-    position: relative;
-    transition: 0.5s;
-}
-.imgBox1::after {
-    transition: 0.5s;
-    position: absolute;
-    content: attr(title);
-    text-align: center;
-    color: var(--white);
+
+.coverFunction {
+    /* background: rgb(255, 121, 121); */
     width: 100%;
-    height: 30px;
-    bottom: 1rem;
-    left: 0;
-    opacity: 0;
-}
-.img {
-    width: calc(100vw / 6);
-    height: 200px;
-    object-fit: cover;
-    transition: 0.2s;
-}
-
-.caption {
-    background: var(--white);
-    height: 400px;
-}
-.textCaption {
-    padding: 2rem;
+    height: 50px;
     display: flex;
-    line-height: 220px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: "Libre Baskerville";
-    letter-spacing: 2px;
-    font-size: 32px;
-    color: var(--black);
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
 }
 
-.coverCarousel :global(.ant-carousel) :global(.slick-dots) li:global(.slick-active) button {
-    background: var(--black);
+.search {
+    font-family: "Libre Baskerville";
 }
-.coverCarousel :global(.ant-carousel) :global(.slick-dots) li button {
+.coverFilterAndSort {
+    /* background: rgb(73, 115, 255); */
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+.filterFunction {
+    width: 110px;
+    border-radius: 2px;
     background: var(--brownlight);
 }
+.sortFunction {
+    width: 160px;
+    border-radius: 2px;
+}
+
+.menuList {
+    /* background: rgb(255, 144, 144); */
+    display: grid;
+    /* grid-template-columns: repeat(auto-fill, 280px); */
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: space-between;
+}
+.text {
+    color: var(--gray3);
+    font-size: 12px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 22px;
+    height: 100px;
+    border-radius: 2px;
+    color: var(--white);
+    background: var(--brownlight);
+}
+
+/* .ant-table-wrapper{
+    font-size: 100px !important;
+} */

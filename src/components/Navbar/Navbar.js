@@ -1,19 +1,27 @@
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import css from 'classnames'
 
-import { IoCartOutline } from 'react-icons/io5'
+import axios from 'axios'
+
+import { FaBoxOpen } from 'react-icons/fa'
+import { FaHome } from 'react-icons/fa'
+import { FaClipboardList } from 'react-icons/fa'
+import { FaUserTie } from 'react-icons/fa'
+
 import logo from '../../picture/logocoffee.png'
 
 export function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.shopName}>
-        <img src={logo} alt="Logocoffee" width={45} />
-        <NavLink to="/">COFFEE SHOP</NavLink>
+        <NavLink to="/" className={styles.home}>
+          <FaHome />
+        </NavLink>
       </div>
       <ul className={styles.text}>
-        <li className={styles.link}>
+        {/* <li className={styles.link}>
           <NavLink
             exact
             to="/"
@@ -62,27 +70,30 @@ export function Navbar() {
           >
             MEMBER
           </NavLink>
-        </li>
-        <div className={styles.divider} />
+        </li> */}
+        {/* <div className={styles.divider} /> */}
 
-        <li className={css(styles.link, styles.cart)}>
-          {/* <NavLink
-            to="/cart"
-            activeClassName={styles.active}
-            className={css(styles.navlink)}
-          >
-            <IoCartOutline size={24} />
-          </NavLink> */}
+        <NavLink to="/order" className={css(styles.link, styles.cart)}>
           <div activeClassName={styles.active} className={css(styles.navlink)}>
-            <IoCartOutline size={24} />
+            <FaClipboardList size={32} />
           </div>
-        </li>
+        </NavLink>
+        {/* <NavLink to="/re" className={css(styles.link, styles.cart)}>
+          <div activeClassName={styles.active} className={css(styles.navlink)}>
+            <FaBoxOpen size={36} />
+          </div>
+        </NavLink> */}
+        <NavLink to="/admin" className={css(styles.link, styles.cart)}>
+          <div activeClassName={styles.active} className={css(styles.navlink)}>
+            <FaUserTie size={32} />
+          </div>
+        </NavLink>
 
-        <li className={styles.link}>
+        {/* <li className={styles.link}>
           <div activeClassName={styles.activeLogin} className={styles.login}>
             LOGIN
           </div>
-        </li>
+        </li> */}
       </ul>
     </nav>
   )
