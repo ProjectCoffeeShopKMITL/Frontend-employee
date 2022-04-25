@@ -27,8 +27,41 @@
 }
 
 .coverContainer {
-    /* padding: 4rem; */
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
+}
+.title {
+    font-family: "Libre Baskerville";
+}
+.titleReStock {
+    width: 100%;
+    text-align: start;
+    font-family: "Libre Baskerville";
+}
+.coverTable {
+    margin-top: 4rem;
+}
+.table {
+    font-family: "Libre Baskerville";
+}
+.coverButton {
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+    font-family: "Libre Baskerville";
+}
+.buttonAddIngredient {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 250px;
+    font-size: 16px;
+}
+.buttonReStock {
+    width: 150px;
+    font-size: 16px;
+    border-radius: 4px;
 }

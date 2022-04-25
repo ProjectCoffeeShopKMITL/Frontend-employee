@@ -50,6 +50,9 @@ export function HomePage() {
         <NavLink to="/stockandmenu" block className={styles.button}>
           Stock And Menu
         </NavLink>
+        <NavLink to="/admin" block className={styles.button}>
+          Employee & Member
+        </NavLink>
         {/* <NavLink to="/updatestock" block className={styles.button}>
           Update Stock
         </NavLink>
@@ -59,11 +62,11 @@ export function HomePage() {
         <NavLink to="/restock" block className={styles.button}>
           Restock
         </NavLink>
-        
+
         <NavLink to="/allmenu" block className={styles.button}>
           Menu
-        </NavLink>
-        <NavLink to="/employee" block className={styles.button}>
+        </NavLink> */}
+        {/* <NavLink to="/employee" block className={styles.button}>
           Employee
         </NavLink>
         <NavLink to="/member" block className={styles.button}>

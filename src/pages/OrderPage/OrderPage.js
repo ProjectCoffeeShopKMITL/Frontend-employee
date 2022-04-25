@@ -38,6 +38,7 @@ export function OrderPage() {
       console.log(error)
     }
   }
+
   useEffect(() => {
     fetchOrderList()
   }, [])

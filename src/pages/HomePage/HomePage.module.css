@@ -27,6 +27,8 @@
 }
 
 .container {
+    background: var(--white);
+    min-height: 72vh;
     display: grid;
     padding: 4rem;
     grid-template-columns: repeat(3, 1fr);

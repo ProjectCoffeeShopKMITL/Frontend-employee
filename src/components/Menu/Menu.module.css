@@ -35,13 +35,18 @@
 }
 
 .coverDetail {
-    /* background: rgb(138, 255, 134); */
     padding: 0.5rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     /* justify-content: space-between; */
+}
+.coverNameAndPrice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .name {

@@ -27,5 +27,25 @@
 }
 
 .cover {
-    padding: 4rem;
+    padding: 4rem 6rem;
+}
+
+.coverTable {
+    margin-top: 2rem;
+}
+.table {
+    font-family: "Libre Baskerville";
+}
+.coverButton {
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+    font-family: "Libre Baskerville";
+}
+.buttonReStock {
+    width: 200px;
+    font-size: 16px;
+    border-radius: 4px;
 }

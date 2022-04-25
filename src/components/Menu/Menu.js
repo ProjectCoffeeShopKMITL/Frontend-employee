@@ -115,7 +115,7 @@ export function Menu({ data, stocks, onEditSuccess }) {
       {data.sale_to !== data.price && <div className={styles.sale}>sale</div>}
 
       <div className={styles.coverDetail}>
-        <div>
+        <div className={styles.coverNameAndPrice}>
           <span className={styles.name}>{data.name}</span>
           {/* <div className={styles.rateCustom}>
           <Rate
@@ -218,12 +218,12 @@ export function Menu({ data, stocks, onEditSuccess }) {
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item label="Price" name="price">
-                <Input />
+                <Input type="number" min={0} />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item label="Sale Price" name="sale_to">
-                <Input />
+                <Input type="number" min={0} />
               </Form.Item>
             </Col>
           </Row>

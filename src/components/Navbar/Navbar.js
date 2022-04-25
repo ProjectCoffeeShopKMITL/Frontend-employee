@@ -5,6 +5,8 @@ import css from 'classnames'
 
 import axios from 'axios'
 
+import { Badge } from 'antd'
+
 import { FaBoxOpen } from 'react-icons/fa'
 import { FaHome } from 'react-icons/fa'
 import { FaClipboardList } from 'react-icons/fa'
@@ -73,11 +75,23 @@ export function Navbar() {
         </li> */}
         {/* <div className={styles.divider} /> */}
 
+        {/* <Badge count={1} size="small" color="#a1744a">
+          <NavLink to="/order" className={css(styles.link, styles.cart)}>
+            <div
+              activeClassName={styles.active}
+              className={css(styles.navlink)}
+            >
+              <FaClipboardList size={32} />
+            </div>
+          </NavLink>
+        </Badge> */}
+
         <NavLink to="/order" className={css(styles.link, styles.cart)}>
           <div activeClassName={styles.active} className={css(styles.navlink)}>
             <FaClipboardList size={32} />
           </div>
         </NavLink>
+
         {/* <NavLink to="/re" className={css(styles.link, styles.cart)}>
           <div activeClassName={styles.active} className={css(styles.navlink)}>
             <FaBoxOpen size={36} />
