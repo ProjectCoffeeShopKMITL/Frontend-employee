@@ -15,7 +15,7 @@ import { HomePage } from './pages/HomePage/HomePage'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/coffee-admin">
       <Navbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
