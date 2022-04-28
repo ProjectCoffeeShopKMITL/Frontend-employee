@@ -49,3 +49,26 @@
     font-size: 16px;
     border-radius: 4px;
 }
+
+.editEmployee {
+    /* background: #000; */
+    color: var(--brownlight);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.imgEmployee {
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px) {
+    .cover {
+        padding: 2rem;
+    }
+}

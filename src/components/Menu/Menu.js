@@ -90,6 +90,20 @@ export function Menu({ data, stocks, onEditSuccess }) {
       console.log(error)
     }
   }
+  const deleteMenu = async () => {
+    try {
+      const formValue = editForm.getFieldsValue()
+      const { data: result } = await axios.delete(
+        process.env.REACT_APP_BACKEND + `/menus/${formValue.id}`
+      )
+      setIsDrawerOpen(false)
+      notification.success({ message: 'Delete menu Success!' })
+      editForm.resetFields()
+      onEditSuccess()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     if (data) {
@@ -160,6 +174,7 @@ export function Menu({ data, stocks, onEditSuccess }) {
         }
         footer={
           <Popconfirm
+            onConfirm={deleteMenu}
             title="Are you sure?"
             okText="Delete"
             okButtonProps={{ danger: true }}
@@ -212,6 +227,7 @@ export function Menu({ data, stocks, onEditSuccess }) {
             }}
           />
           <br />
+          <Form.Item name="id" noStyle />
           <Form.Item label="Name" name="name">
             <Input />
           </Form.Item>

@@ -7,7 +7,6 @@ import styles from './StockAndMenuPage.module.css'
 import css from 'classnames'
 
 import { FiEdit, FiTrash2 } from 'react-icons/fi'
-import { BsPlusLg } from 'react-icons/bs'
 
 import {
   Drawer,
@@ -24,7 +23,7 @@ import {
   Divider,
   notification,
   message,
-  Modal,
+  Popconfirm,
 } from 'antd'
 
 import ReactTable from 'react-table-v6'
@@ -43,25 +42,14 @@ export function StockAndMenuPage() {
   const [menuList, setMenuList] = useState([])
   const [stockList, setStockList] = useState([])
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [isDrawerOpenAddMenu, setIsDrawerOpenAddMenu] = useState(false)
+  const [isDrawerOpenEditMenu, setIsDrawerOpenEditMenu] = useState(false)
   const [addForm] = Form.useForm()
   const [reStockForm] = Form.useForm()
+  const [addStockForm] = Form.useForm()
   const [stockOption, setstockOption] = useState([])
   const [imgUrl, setImgUrl] = useState([])
   const fileRef = useRef()
-
-  const [isModalVisible, setIsModalVisible] = useState(false)
-
-  const showModal = () => {
-    setIsModalVisible(true)
-  }
-
-  const handleOk = () => {
-    setIsModalVisible(false)
-  }
-
-  const handleCancel = () => {
-    setIsModalVisible(false)
-  }
 
   const handleUpload = (files) => {
     if (!files.length) {
@@ -119,6 +107,40 @@ export function StockAndMenuPage() {
   }
 
   // Stock ----------------------------------------
+  const submitFormAddStock = async (formValue) => {
+    console.log('testaddfunction')
+    try {
+      const { data } = await axios.post(
+        process.env.REACT_APP_BACKEND + `/stocks/add`,
+        {
+          stocks: [formValue],
+        }
+      )
+      setIsDrawerOpenAddMenu(false)
+      notification.success({ message: 'Add Ingredient Success!' })
+      addStockForm.resetFields()
+      fetchStocks()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const submitFormEditStock = async (formValue) => {
+    try {
+      const { data } = await axios.put(
+        process.env.REACT_APP_BACKEND + `/stocks/update/${formValue.id}`,
+        {
+          ...formValue,
+        }
+      )
+      setIsDrawerOpenEditMenu(false)
+      notification.success({ message: 'Edit Ingredient Success!' })
+      reStockForm.resetFields()
+      fetchStocks()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const fetchStocks = async () => {
     try {
       const { data } = await axios.get(
@@ -135,18 +157,16 @@ export function StockAndMenuPage() {
       console.log(error)
     }
   }
-  const reStocks = async (formValue) => {
+
+  const deleteIngredient = async () => {
     try {
-      const { data } = await axios.post(
-        process.env.REACT_APP_BACKEND + `/stocks`
+      const formValue = reStockForm.getFieldsValue()
+      const { data: result } = await axios.delete(
+        process.env.REACT_APP_BACKEND + `/stocks/${formValue.id}`
       )
-      setStockList(data)
-      setstockOption(
-        data.map((s) => ({
-          value: s.id,
-          label: s.ingredient_name,
-        }))
-      )
+      setIsDrawerOpenEditMenu(false)
+      notification.success({ message: 'Delete menu Success!' })
+      reStockForm.resetFields()
       fetchStocks()
     } catch (error) {
       console.log(error)
@@ -156,83 +176,36 @@ export function StockAndMenuPage() {
   const titleIngredients = [
     {
       title: 'Ingredient Name',
-      dataIndex: 'name',
+      dataIndex: 'ingredient_name',
     },
     {
       title: 'Quantity',
       dataIndex: 'quantity',
+      width: 100,
+      align: 'center',
+      render: (value) => <div style={{ textAlign: 'right' }}>{value}</div>,
     },
     {
       title: 'Unit',
       dataIndex: 'unit',
-    },
-  ]
-  const ingredients = [
-    {
-      key: '1',
-      name: 'milk(steam)',
-      quantity: <InputNumber min={100} max={1000} defaultValue={100} />,
-      unit: 'Oz.',
+      width: 80,
+      align: 'center',
     },
     {
-      key: '2',
-      name: 'milk(cold)',
-      quantity: <InputNumber min={145} max={1000} defaultValue={145} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '3',
-      name: 'milk(foam)',
-      quantity: <InputNumber min={245} max={1000} defaultValue={245} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '4',
-      name: 'chocolate(decor)',
-      quantity: <InputNumber min={146} max={1000} defaultValue={146} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '5',
-      name: 'expresso(shot)',
-      quantity: <InputNumber min={434} max={1000} defaultValue={434} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '6',
-      name: 'chocolate(sauce)',
-      quantity: <InputNumber min={159} max={1000} defaultValue={159} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '7',
-      name: 'caramel(decor)',
-      quantity: <InputNumber min={136} max={1000} defaultValue={136} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '8',
-      name: 'vanila(syrup)',
-      quantity: <InputNumber min={234} max={1000} defaultValue={234} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '9',
-      name: 'syrup',
-      quantity: <InputNumber min={345} max={1000} defaultValue={345} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '10',
-      name: 'water(cold)',
-      quantity: <InputNumber min={1000} max={1000} defaultValue={1000} />,
-      unit: 'Oz.',
-    },
-    {
-      key: '11',
-      name: 'ice',
-      quantity: <InputNumber min={800} max={1000} defaultValue={800} />,
-      unit: 'cup',
+      title: '',
+      render: (record) => (
+        <div
+          className={styles.editStock}
+          onClick={() => {
+            setIsDrawerOpenEditMenu(true)
+            reStockForm.setFieldsValue(record)
+          }}
+        >
+          <FiEdit fontSize={22} />
+          Edit
+        </div>
+      ),
+      width: 100,
     },
   ]
 
@@ -247,7 +220,7 @@ export function StockAndMenuPage() {
         <div className={styles.imgHeader}></div>
         <h4 className={styles.textHeader}>Stock & Menu</h4>
       </div>
-      <div style={{ padding: '2rem 6rem 4rem 6rem' }}>
+      <div className={styles.cover}>
         <Row justify="space-between">
           <Col className={styles.title}>
             <h1>Menu</h1>
@@ -277,7 +250,9 @@ export function StockAndMenuPage() {
             />
           ))}
         </div>
+
         <Divider />
+
         <div className={styles.coverTable}>
           <Form form={reStockForm}>
             <Row justify="space-between">
@@ -286,18 +261,16 @@ export function StockAndMenuPage() {
               </Col>
               <Col>
                 <Button
-                  // className={styles.buttonAddIngredient}
-                  style={{
-                    // color: '#f6f5ef',
-                    // background: '#c6a07d',
-                    width: '200px',
-                    height: '40px',
-                    fontSize: '16px',
-                    borderRadius: '4px',
-                  }}
+                  className={styles.buttonAddIngredient}
+                  // style={{
+                  //   width: '200px',
+                  //   height: '40px',
+                  //   fontSize: '16px',
+                  //   borderRadius: '4px',
+                  // }}
                   type="primary"
                   size="large"
-                  // onClick={showModal}
+                  onClick={() => setIsDrawerOpenAddMenu(true)}
                 >
                   {/* <BsPlusLg /> Add Ingredient */}
                   {'+   '} Add Ingredient
@@ -307,51 +280,168 @@ export function StockAndMenuPage() {
             <Table
               className={styles.table}
               columns={titleIngredients}
-              dataSource={ingredients}
+              dataSource={stockList}
               pagination={false}
               bordered
-              summary={(pageData) => {
-                let totalBorrow = 0
-                let totalRepayment = 0
+              // summary={(pageData) => {
+              //   let totalBorrow = 0
+              //   let totalRepayment = 0
 
-                pageData.forEach(({ borrow, repayment }) => {
-                  totalBorrow += borrow
-                  totalRepayment += repayment
-                })
+              //   pageData.forEach(({ borrow, repayment }) => {
+              //     totalBorrow += borrow
+              //     totalRepayment += repayment
+              //   })
 
-                return (
-                  <>
-                    <Table.Summary.Row></Table.Summary.Row>
-                  </>
-                )
-              }}
+              //   return (
+              //     <>
+              //       <Table.Summary.Row></Table.Summary.Row>
+              //     </>
+              //   )
+              // }}
             />
-            <div className={styles.coverButton}>
-              <Button
-                className={styles.buttonReStock}
-                type="primary"
-                size="large"
-              >
-                ReStock
-              </Button>
-            </div>
           </Form>
         </div>
 
-        {/* Modal ---------------------------------*/}
-        {/* <Modal
-          // title="Basic Modal"
-          visible={isModalVisible}
-          onOk={handleOk}
-          okText='Save'
-          onCancel={handleCancel}
+        {/* Drawer stock ---------------------------------*/}
+        {/* Edit Ingredient ----------------- */}
+        <Drawer
+          footer={
+            <Popconfirm
+              onConfirm={deleteIngredient}
+              title="Are you sure?"
+              okText="Delete"
+              okButtonProps={{ danger: true }}
+            >
+              <Button type="text" danger block>
+                <FiTrash2
+                  style={{
+                    marginRight: '1rem',
+                    fontSize: '16px',
+                    marginBottom: '-2px',
+                  }}
+                />
+                Delete Ingredient
+              </Button>
+            </Popconfirm>
+          }
+          title={
+            <Row justify="space-between" align="middle">
+              <Col>Edit Ingredient</Col>
+              <Col>
+                <Button type="primary" onClick={reStockForm.submit}>
+                  Save
+                </Button>
+              </Col>
+            </Row>
+          }
+          visible={isDrawerOpenEditMenu}
+          className={styles.drawerSweet}
+          maskClosable={false}
+          keyboard={false}
+          onClose={() => {
+            setIsDrawerOpenEditMenu(false)
+          }}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal> */}
+          <Form
+            requiredMark={false}
+            layout="vertical"
+            form={reStockForm}
+            onFinish={(value) => {
+              submitFormEditStock(value)
+            }}
+          >
+            <Form.Item
+              name="id"
+              noStyle
+              rules={[{ required: true, message: '' }]}
+            />
+            <Form.Item
+              label="Name"
+              name="ingredient_name"
+              rules={[{ required: true, message: 'Please input Name' }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Quantity"
+              name="quantity"
+              rules={[{ required: true, message: 'Please input Quantity' }]}
+            >
+              <InputNumber style={{ width: '100%' }} type="number" />
+            </Form.Item>
+            <Form.Item
+              label="Unit"
+              name="unit"
+              rules={[{ required: true, message: 'Please input Unit' }]}
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+        </Drawer>
+        {/* Edit Ingredient End ----------------- */}
 
-        {/* Drawer ---------------------------------*/}
+        {/* Add Ingredient----------------- */}
+        <Drawer
+          title={
+            <Row justify="space-between" align="middle">
+              <Col>Add Ingredient</Col>
+              <Col>
+                <Button type="primary" onClick={addStockForm.submit}>
+                  Add
+                </Button>
+              </Col>
+            </Row>
+          }
+          visible={isDrawerOpenAddMenu}
+          className={styles.drawerSweet}
+          maskClosable={false}
+          keyboard={false}
+          onClose={() => {
+            setIsDrawerOpenAddMenu(false)
+          }}
+        >
+          <Form
+            requiredMark={false}
+            layout="vertical"
+            form={addStockForm}
+            onFinish={(value) => {
+              submitFormAddStock(value)
+            }}
+          >
+            {/* <Form.Item
+              name="id"
+              noStyle
+              rules={[{ required: true, message: '' }]}
+            /> */}
+            <Form.Item
+              label="Name"
+              name="ingredient_name"
+              rules={[{ required: true, message: 'Please input Name' }]}
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label="Quantity"
+              name="quantity"
+              rules={[{ required: true, message: 'Please input Quantity' }]}
+            >
+              <InputNumber style={{ width: '100%' }} type="number" />
+            </Form.Item>
+            <Form.Item
+              label="Unit"
+              name="unit"
+              rules={[{ required: true, message: 'Please input Unit' }]}
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+        </Drawer>
+        {/* Drawer stock end ---------------------------------*/}
+
+        {/* --------------------------------------------------------------------------------------------------- */}
+
+        {/* Drawer menu ---------------------------------*/}
+
         <Drawer
           title={
             <Row justify="space-between" align="middle">
