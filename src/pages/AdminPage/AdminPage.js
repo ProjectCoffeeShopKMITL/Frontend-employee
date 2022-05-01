@@ -137,7 +137,7 @@ export function AdminPage() {
       render: (value) => {
         return <img src={value} className={styles.imgEmployee} />
       },
-      width: 40,
+      width: 150,
       align: 'center',
     },
     {
@@ -162,18 +162,18 @@ export function AdminPage() {
       title: 'E-mail',
       dataIndex: 'email',
     },
-    {
-      title: 'Login',
-      dataIndex: 'login',
-      align: 'center',
-      width: 100,
-    },
-    {
-      title: 'Logout',
-      dataIndex: 'logout',
-      align: 'center',
-      width: 100,
-    },
+    // {
+    //   title: 'Login',
+    //   dataIndex: 'login',
+    //   align: 'center',
+    //   width: 100,
+    // },
+    // {
+    //   title: 'Logout',
+    //   dataIndex: 'logout',
+    //   align: 'center',
+    //   width: 100,
+    // },
     {
       title: '',
       render: (record) => (
