@@ -533,7 +533,7 @@ export function StockAndMenuPage() {
                   name="description"
                   rules={[{ required: true, message: '' }]}
                 >
-                  <Input.TextArea maxLength={200} showCount rows={6} />
+                  <Input.TextArea maxLength={400} showCount rows={6} />
                 </Form.Item>
               </Col>
             </Row>

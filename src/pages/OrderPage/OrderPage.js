@@ -100,9 +100,10 @@ export function OrderPage() {
 
                   <div>
                     name: {order.firstname}
+                    {'  '}
                     {order.lastname}
                   </div>
-                  <div>phone_no: {order.phone_no}</div>
+                  <div>phone number: {order.phone_no}</div>
                   <div>address: {order.address}</div>
                   {/* <div>note: {(order.note = '' ? '-' : order.note)}</div> */}
                   <div>note: {order.note}</div>
@@ -196,28 +197,41 @@ export function OrderPage() {
               .sort((a, b) => a.id - b.id)
               .map((order, index) => (
                 <div className={styles.coverOrder} key={order.id}>
-                  <h2>order# {order.id}</h2>
-                  <div>
-                    date:{' '}
-                    {new Date(order.order_timestamptz).toLocaleDateString(
-                      'th-TH',
-                      {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: '2-digit',
-                      }
-                    )}
+                  <div className={styles.coverDateAndTime}>
+                    <h2>Order# {order.id}</h2>
+                    <div>
+                      <div className={styles.dateAntTime}>
+                        date:{' '}
+                        {new Date(order.order_timestamptz).toLocaleDateString(
+                          'th-TH',
+                          {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: '2-digit',
+                          }
+                        )}
+                      </div>
+                      <div className={styles.dateAntTime}>
+                        time:{' '}
+                        {new Date(order.order_timestamptz).toLocaleTimeString(
+                          'th-TH',
+                          {
+                            timeStyle: 'short',
+                          }
+                        )}
+                      </div>
+                    </div>
                   </div>
+
                   <div>
-                    time:{' '}
-                    {new Date(order.order_timestamptz).toLocaleTimeString(
-                      'th-TH',
-                      {
-                        timeStyle: 'short',
-                      }
-                    )}
+                    name: {order.firstname}
+                    {'  '}
+                    {order.lastname}
                   </div>
+                  <div>phone number: {order.phone_no}</div>
                   <div>address: {order.address}</div>
+                  {/* <div>note: {(order.note = '' ? '-' : order.note)}</div> */}
+                  <div>note: {order.note}</div>
                   <br />
 
                   <Row>
