@@ -24,6 +24,7 @@ import {
   notification,
   message,
   Popconfirm,
+  Checkbox,
 } from 'antd'
 
 import ReactTable from 'react-table-v6'
@@ -53,7 +54,7 @@ export function StockAndMenuPage() {
 
   const handleUpload = (files) => {
     if (!files.length) {
-      notification.error({ message: 'Upload file Error!' })
+      notification('topLeft').error({ message: 'Upload file Error!' })
       return
     }
     _.forEach(files, (f) => {
@@ -85,7 +86,10 @@ export function StockAndMenuPage() {
   }
   const submitForm = async (formValue) => {
     if (!imgUrl.length) {
-      notification.warning({ message: 'Please upload Image!' })
+      notification('topLeft').warning({
+        message: 'Please upload Image!',
+        placement: 'topLeft',
+      })
       return
     }
     try {
@@ -97,7 +101,10 @@ export function StockAndMenuPage() {
         }
       )
       setIsDrawerOpen(false)
-      notification.success({ message: 'Add menu Success!' })
+      notification('topLeft').success({
+        message: 'Add menu Success!',
+        placement: 'topLeft',
+      })
       addForm.resetFields()
       fileRef.current.value = ''
       fetchMenuList()
@@ -117,7 +124,10 @@ export function StockAndMenuPage() {
         }
       )
       setIsDrawerOpenAddMenu(false)
-      notification.success({ message: 'Add Ingredient Success!' })
+      notification('topLeft').success({
+        message: 'Add Ingredient Success!',
+        placement: 'topLeft',
+      })
       addStockForm.resetFields()
       fetchStocks()
     } catch (error) {
@@ -133,7 +143,10 @@ export function StockAndMenuPage() {
         }
       )
       setIsDrawerOpenEditMenu(false)
-      notification.success({ message: 'Edit Ingredient Success!' })
+      notification('topLeft').success({
+        message: 'Edit Ingredient Success!',
+        placement: 'topLeft',
+      })
       reStockForm.resetFields()
       fetchStocks()
     } catch (error) {
@@ -165,7 +178,10 @@ export function StockAndMenuPage() {
         process.env.REACT_APP_BACKEND + `/stocks/delete/${formValue.id}`
       )
       setIsDrawerOpenEditMenu(false)
-      notification.success({ message: 'Delete menu Success!' })
+      notification('topLeft').success({
+        message: 'Delete menu Success!',
+        placement: 'topLeft',
+      })
       reStockForm.resetFields()
       fetchStocks()
     } catch (error) {
@@ -534,6 +550,18 @@ export function StockAndMenuPage() {
                   rules={[{ required: true, message: '' }]}
                 >
                   <Input.TextArea maxLength={400} showCount rows={6} />
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row>
+              <Col span={24}>
+                <Form.Item
+                  initialValue={false}
+                  label="Recommend"
+                  name="is_recommend"
+                  valuePropName="checked"
+                >
+                  <Checkbox />
                 </Form.Item>
               </Col>
             </Row>

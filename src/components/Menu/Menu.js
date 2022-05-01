@@ -20,6 +20,7 @@ import {
   Select,
   Divider,
   InputNumber,
+  Checkbox,
 } from 'antd'
 
 import { IoCartOutline } from 'react-icons/io5'
@@ -46,7 +47,10 @@ export function Menu({ data, stocks, onEditSuccess }) {
 
   const handleUpload = (files) => {
     if (!files.length) {
-      notification.error({ message: 'Upload file Error!' })
+      notification.error({
+        message: 'Upload file Error!',
+        placement: 'topLeft',
+      })
       return
     }
     setImgUrl([])
@@ -82,7 +86,10 @@ export function Menu({ data, stocks, onEditSuccess }) {
         }
       )
       setIsDrawerOpen(false)
-      notification.success({ message: 'Edit menu Success!' })
+      notification.success({
+        message: 'Edit menu Success!',
+        placement: 'topLeft',
+      })
       editForm.resetFields()
       fileRef.current.value = ''
       onEditSuccess()
@@ -97,7 +104,10 @@ export function Menu({ data, stocks, onEditSuccess }) {
         process.env.REACT_APP_BACKEND + `/menus/${formValue.id}`
       )
       setIsDrawerOpen(false)
-      notification.success({ message: 'Delete menu Success!' })
+      notification.success({
+        message: 'Delete menu Success!',
+        placement: 'topLeft',
+      })
       editForm.resetFields()
       onEditSuccess()
     } catch (error) {
@@ -282,6 +292,17 @@ export function Menu({ data, stocks, onEditSuccess }) {
             <Col span={24}>
               <Form.Item label="Description" name="description">
                 <Input.TextArea maxLength={200} showCount rows={6} />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={24}>
+              <Form.Item
+                label="Recommend"
+                name="is_recommend"
+                valuePropName="checked"
+              >
+                <Checkbox />
               </Form.Item>
             </Col>
           </Row>

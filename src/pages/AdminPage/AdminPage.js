@@ -148,12 +148,12 @@ export function AdminPage() {
       title: 'Last name',
       dataIndex: 'lastname',
     },
-    // {
-    //   title: 'Age',
-    //   dataIndex: 'age',
-    //   width: 40,
-    //   align: 'center',
-    // },
+    {
+      title: 'Age',
+      dataIndex: 'age',
+      width: 70,
+      align: 'center',
+    },
     {
       title: 'Phone number',
       dataIndex: 'phone_no',
@@ -387,9 +387,18 @@ export function AdminPage() {
           <Form.Item
             label="Phone number"
             name="phone_no"
-            rules={[{ required: true, message: 'Please input Phone number' }]}
+            rules={[
+              {
+                required: true,
+                message: 'please input your Phone number',
+              },
+              {
+                pattern: new RegExp(/^\d{10}$/),
+                message: 'please input number only',
+              },
+            ]}
           >
-            <Input type="number" allowClear />
+            <Input allowClear />
           </Form.Item>
           <Form.Item
             label="E-mail"
