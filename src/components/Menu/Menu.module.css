@@ -67,6 +67,15 @@
     color: var(--gray4);
     text-decoration: line-through;
 }
+.coverShowIngredient {
+    color: var(--gray4);
+}
+.showIngredient {
+    color: var(--gray4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .rateCustom :global(.ant-rate) {
     /* background: rgb(255, 133, 133); */

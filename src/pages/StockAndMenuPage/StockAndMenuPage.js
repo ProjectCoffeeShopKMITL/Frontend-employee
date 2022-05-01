@@ -162,7 +162,7 @@ export function StockAndMenuPage() {
     try {
       const formValue = reStockForm.getFieldsValue()
       const { data: result } = await axios.delete(
-        process.env.REACT_APP_BACKEND + `/stocks/${formValue.id}`
+        process.env.REACT_APP_BACKEND + `/stocks/delete/${formValue.id}`
       )
       setIsDrawerOpenEditMenu(false)
       notification.success({ message: 'Delete menu Success!' })

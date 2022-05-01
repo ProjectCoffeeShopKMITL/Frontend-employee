@@ -138,7 +138,6 @@ export function Menu({ data, stocks, onEditSuccess }) {
             className={styles.star}
           />
         </div> */}
-
           {data.sale_to !== data.price ? (
             <div className={styles.coverPriceSaleTo}>
               <span className={styles.priceSaleTo}>{data.price}&nbsp;Baht</span>
@@ -147,6 +146,35 @@ export function Menu({ data, stocks, onEditSuccess }) {
           ) : (
             <span className={styles.price}>{data.price}&nbsp;Baht</span>
           )}
+          {/* <Form
+            initialValues={{
+              ...data,
+              ingredients: _.get(data, 'ingredients.length')
+                ? data.ingredients
+                : [{ quantity: 1 }],
+            }}
+            layout="vertical"
+            form={editForm}
+          >
+            <div className={styles.coverShowIngredient}>
+              <Form.List name="ingredients">
+                {(fields, ingredientsList) => (
+                  <>
+                    {fields.map(({ name, ...rest }) => (
+                      <div className={styles.showIngredient}>
+                        <Form.Item {...rest} name={[name, 'ingredient_name']}>
+                          <Input noStyle />
+                        </Form.Item>
+                        <Form.Item {...rest} name={[name, 'quantity']}>
+                          <Input noStyle />
+                        </Form.Item>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </Form.List>
+            </div>
+          </Form> */}
         </div>
         <div
           className={styles.button}

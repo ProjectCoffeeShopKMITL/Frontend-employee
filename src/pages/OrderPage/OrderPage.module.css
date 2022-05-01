@@ -26,8 +26,11 @@
     z-index: 1;
 }
 
-.coverContainerOrder {
+.container {
     padding: 2rem 4rem;
+    /* font-family: "Libre Baskerville"; */
+}
+.coverContainerOrder {
     display: grid;
     grid-template-columns: repeat(auto-fill, 400px);
     justify-content: space-between;
@@ -39,9 +42,27 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 10px 8px 0px;
 }
 
+.coverDateAndTime {
+    display: flex;
+    justify-content: space-between;
+    /* margin-top: 1rem; */
+}
+.dateAntTime {
+    text-align: end;
+}
+
 @media only screen and (max-width: 1024px) {
     .coverContainerOrder {
-        padding: 2rem 5rem;
+        /* padding: 2rem 5rem; */
         grid-template-columns: repeat(auto-fill, 410px);
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .container {
+        padding: 2rem;
+    }
+    .coverContainerOrder {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

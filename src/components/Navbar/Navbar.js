@@ -88,7 +88,13 @@ export function Navbar() {
 
         <NavLink to="/order" className={css(styles.link, styles.cart)}>
           <div activeClassName={styles.active} className={css(styles.navlink)}>
-            <FaClipboardList size={32} />
+            <FaClipboardList className={styles.icon} />
+          </div>
+        </NavLink>
+
+        <NavLink to="/stockandmenu" className={css(styles.link, styles.cart)}>
+          <div activeClassName={styles.active} className={css(styles.navlink)}>
+            <FaBoxOpen className={styles.icon} />
           </div>
         </NavLink>
 
@@ -99,7 +105,7 @@ export function Navbar() {
         </NavLink> */}
         <NavLink to="/admin" className={css(styles.link, styles.cart)}>
           <div activeClassName={styles.active} className={css(styles.navlink)}>
-            <FaUserTie size={32} />
+            <FaUserTie className={styles.icon} />
           </div>
         </NavLink>
 

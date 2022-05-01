@@ -33,12 +33,12 @@
 
 .link {
   /* background: rgb(255, 143, 143); */
-  width: 90px;
+  /* width: 90px; */
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0.5rem;
+  /* margin: 0 0.5rem; */
 }
 
 .navlink:hover {
@@ -47,9 +47,9 @@
 }
 .navlink {
   color: var(--white);
-  border-bottom: 3px solid rgb(31, 31, 31, 0);
-  height: 80%;
-  width: 100%;
+  /* border-bottom: 3px solid rgb(31, 31, 31, 0); */
+  /* height: 80%;
+  width: 100%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,4 +98,17 @@
 .activeLogin {
   color: var(--brownlight);
   border: 1px solid var(--brownlight);
+}
+
+.icon {
+  font-size: 32px;
+}
+
+@media only screen and (max-width: 960px) {
+  .icon {
+    font-size: 24px;
+  }
+  .cart {
+    width: 30px;
+  }
 }

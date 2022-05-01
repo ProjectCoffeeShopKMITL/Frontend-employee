@@ -26,6 +26,7 @@ export function AdminPage() {
   const { TabPane } = Tabs
 
   const [employeesList, setEmployeesList] = useState([])
+  const [membersList, setMembersList] = useState([])
   const [addForm] = Form.useForm()
   const [editForm] = Form.useForm()
   const [isDrawerOpenEditEmployee, setIsDrawerOpenEditEmployee] =
@@ -104,6 +105,16 @@ export function AdminPage() {
       console.log(error)
     }
   }
+  const fetchMembers = async () => {
+    try {
+      const { data } = await axios.get(
+        process.env.REACT_APP_BACKEND + `/management/members`
+      )
+      setMembersList(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const deleteEmployee = async () => {
     try {
       const formValue = editForm.getFieldsValue()
@@ -111,7 +122,7 @@ export function AdminPage() {
         process.env.REACT_APP_BACKEND + `/employees/delete/${formValue.id}`
       )
       setIsDrawerOpenEditEmployee(false)
-      notification.success({ message: 'Delete menu Success!' })
+      notification.success({ message: 'Delete employee Success!' })
       editForm.resetFields()
       fetchEmployees()
     } catch (error) {
@@ -144,7 +155,7 @@ export function AdminPage() {
     //   align: 'center',
     // },
     {
-      title: 'Phone No.',
+      title: 'Phone number',
       dataIndex: 'phone_no',
     },
     {
@@ -184,14 +195,14 @@ export function AdminPage() {
   ]
 
   const titleMember = [
-    {
-      title: 'Picture',
-      dataIndex: 'img',
-      render: (value) => {
-        console.log('testsefsfwef', value)
-        return <img src={value} />
-      },
-    },
+    // {
+    //   title: 'Picture',
+    //   dataIndex: 'img',
+    //   render: (value) => {
+    //     // console.log('testsefsfwef', value)
+    //     return <img src={value} />
+    //   },
+    // },
     {
       title: 'First name',
       dataIndex: 'firstname',
@@ -201,8 +212,8 @@ export function AdminPage() {
       dataIndex: 'lastname',
     },
     {
-      title: 'Phone',
-      dataIndex: 'phone_no',
+      title: 'Phone number',
+      dataIndex: 'mobile',
     },
     {
       title: 'E-mail',
@@ -216,6 +227,7 @@ export function AdminPage() {
 
   useEffect(() => {
     fetchEmployees()
+    fetchMembers()
   }, [])
 
   return (
@@ -255,7 +267,7 @@ export function AdminPage() {
                 <Table
                   className={styles.table}
                   columns={titleMember}
-                  dataSource={[]}
+                  dataSource={membersList}
                   pagination={false}
                   bordered
                 />
