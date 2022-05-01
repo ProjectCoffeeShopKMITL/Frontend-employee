@@ -38,7 +38,10 @@ export function AdminPage() {
 
   const handleUpload = (files) => {
     if (!files.length) {
-      notification.error({ message: 'Upload file Error!' })
+      notification.error({
+        message: 'Upload file Error!',
+        placement: 'topLeft',
+      })
       return
     }
     setImgUrl([])
@@ -53,7 +56,10 @@ export function AdminPage() {
 
   const submitFormAddEmployee = async (formValue) => {
     if (!imgUrl.length) {
-      notification.warning({ message: 'Please upload Image!' })
+      notification.warning({
+        message: 'Please upload Image!',
+        placement: 'topLeft',
+      })
       return
     }
     try {
@@ -65,7 +71,10 @@ export function AdminPage() {
         }
       )
       setIsDrawerOpenAddEmployee(false)
-      notification.success({ message: 'Add employee Success!' })
+      notification.success({
+        message: 'Add employee Success!',
+        placement: 'topLeft',
+      })
       addForm.resetFields()
       fileRef.current.value = ''
       fetchEmployees()
@@ -75,7 +84,10 @@ export function AdminPage() {
   }
   const submitFormEditEmployee = async (formValue) => {
     if (!imgUrl.length) {
-      notification.warning({ message: 'Please upload Image!' })
+      notification.warning({
+        message: 'Please upload Image!',
+        placement: 'topLeft',
+      })
       return
     }
     try {
@@ -87,7 +99,10 @@ export function AdminPage() {
         }
       )
       setIsDrawerOpenEditEmployee(false)
-      notification.success({ message: 'Edit employee Success!' })
+      notification.success({
+        message: 'Edit employee Success!',
+        placement: 'topLeft',
+      })
       editForm.resetFields()
       fileRef.current.value = ''
       fetchEmployees()
@@ -122,7 +137,10 @@ export function AdminPage() {
         process.env.REACT_APP_BACKEND + `/employees/delete/${formValue.id}`
       )
       setIsDrawerOpenEditEmployee(false)
-      notification.success({ message: 'Delete employee Success!' })
+      notification.success({
+        message: 'Delete employee Success!',
+        placement: 'topLeft',
+      })
       editForm.resetFields()
       fetchEmployees()
     } catch (error) {
