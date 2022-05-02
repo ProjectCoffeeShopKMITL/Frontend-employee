@@ -54,7 +54,10 @@ export function StockAndMenuPage() {
 
   const handleUpload = (files) => {
     if (!files.length) {
-      notification('topLeft').error({ message: 'Upload file Error!' })
+      notification.error({
+        message: 'Upload file Error!',
+        placement: 'topLeft',
+      })
       return
     }
     _.forEach(files, (f) => {
@@ -86,7 +89,7 @@ export function StockAndMenuPage() {
   }
   const submitForm = async (formValue) => {
     if (!imgUrl.length) {
-      notification('topLeft').warning({
+      notification.warning({
         message: 'Please upload Image!',
         placement: 'topLeft',
       })
@@ -101,7 +104,7 @@ export function StockAndMenuPage() {
         }
       )
       setIsDrawerOpen(false)
-      notification('topLeft').success({
+      notification.success({
         message: 'Add menu Success!',
         placement: 'topLeft',
       })
@@ -124,7 +127,7 @@ export function StockAndMenuPage() {
         }
       )
       setIsDrawerOpenAddMenu(false)
-      notification('topLeft').success({
+      notification.success({
         message: 'Add Ingredient Success!',
         placement: 'topLeft',
       })
@@ -143,7 +146,7 @@ export function StockAndMenuPage() {
         }
       )
       setIsDrawerOpenEditMenu(false)
-      notification('topLeft').success({
+      notification.success({
         message: 'Edit Ingredient Success!',
         placement: 'topLeft',
       })
@@ -178,7 +181,7 @@ export function StockAndMenuPage() {
         process.env.REACT_APP_BACKEND + `/stocks/delete/${formValue.id}`
       )
       setIsDrawerOpenEditMenu(false)
-      notification('topLeft').success({
+      notification.success({
         message: 'Delete menu Success!',
         placement: 'topLeft',
       })
